@@ -9,6 +9,10 @@ import org.springframework.stereotype.Service;
 
 import static java.util.Collections.emptyList;
 
+/**
+ * implemented the spring security user details service
+ * 
+ */
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 	
