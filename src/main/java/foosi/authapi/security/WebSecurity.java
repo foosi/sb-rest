@@ -44,12 +44,22 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                 .antMatchers("/dba/**").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_DBA')")
                 .anyRequest().authenticated()
                 .and()
+                // authentication manager builder is already configured in method configure below
+                // and used to create the authentication manager
                 .addFilter(new JWTAuthenticationFilter(authenticationManager()))
                 .addFilter(new JWTAuthorizationFilter(authenticationManager()))
                 // this disables session creation on Spring Security
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and().formLogin()
-                	//.loginPage("/log").permitAll() // for custom login page
+                .and()
+                	.formLogin()
+                		.loginPage("/auth/login")
+                		//.failureUrl("/login?error")
+                		.usernameParameter("loginId").passwordParameter("passwd")                	
+                		.permitAll() // for custom login page
+                //.and()
+                //	.logout().logoutSuccessUrl("/login?logout")
+                //.and()
+                //	.csrf()
                 ;
         
     }
