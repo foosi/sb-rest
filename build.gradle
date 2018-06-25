@@ -23,11 +23,15 @@ repositories {
 
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter')
-	compile("io.jsonwebtoken:jjwt:0.7.0")
+	compile("io.jsonwebtoken:jjwt:0.7.0") // another third party jwt library
 	compile("org.springframework.boot:spring-boot-starter-web")
 	compile("org.springframework.boot:spring-boot-starter-data-jpa")
 	compile("org.springframework.boot:spring-boot-starter-security")
+	compile("org.springframework.boot:spring-boot-devtools")
+	compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+	compile("org.springframework.security:spring-security-jwt") // spring jwt library
 	compile("org.hsqldb:hsqldb")
+		
 	
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
