@@ -14,6 +14,10 @@ public class Application {
 	}
 	
 	
+	/**
+	 * initialize the BCrypt Encoder and managed by the spring container
+	 * @return
+	 */
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();

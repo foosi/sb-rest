@@ -18,7 +18,9 @@ public class UserController {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	/**
-	 * save the user sign up information, including the username and encoded password 
+	 * save the user sign up information, including the user name and encoded password
+	 *  
+	 *  
 	 * @param user
 	 */
     @PostMapping("/sign-up")

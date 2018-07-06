@@ -23,7 +23,7 @@ import org.springframework.context.annotation.Configuration;
  *
  */
 @Configuration
-@EnableWebSecurity
+@EnableWebSecurity // custom configuration and disable the default setting and need to extend WebSecurityConfigurerAdapter
 public class WebSecurity extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
@@ -32,9 +32,12 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 	@Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+	// request layer configuration - HttpSecurity
+	// 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable().authorizeRequests()
+        		// URL: /users/sign-up
                 .antMatchers(HttpMethod.POST, SIGN_UP_URL).permitAll() // permit only sign up URL
                 .antMatchers(HttpMethod.POST, "/welcome").permitAll()
                 .antMatchers(HttpMethod.GET, "/welcome").permitAll()
@@ -64,6 +67,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
         
     }
 
+    // Authentication layer configuration - AuthenticationManagerBuilder
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
     	
@@ -72,6 +76,11 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
     	
         auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder);
     }
+    
+    // ************************************************************************************************
+    // once the basic configuration is done, it is required to create the custom UserDetailsService
+    // and also PermissionEvaluator if necessary 
+    
     
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {

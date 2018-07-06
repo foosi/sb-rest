@@ -30,6 +30,18 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         
         // return the spring security user object
         return new User(applicationUser.getUsername(), applicationUser.getPassword(), emptyList());
+        
+        
+        /**
+         * for the authority setting, it's better to inject the RoleService
+         * and then use the id to get the roles list 
+         * 
+         *     @Autowired    		   
+    		   private RoleService roleService;    		       		   
+    		   roleService.getRoles(login.getId()).forEach(r -> authorities.add(new SimpleGrantedAuthority(r.getName())));
+
+         */
+        
     }
     
 //    protected List<UserDetails> loadUsersByUsername(String username) {
