@@ -15,6 +15,7 @@ public class HelloController {
 	public String welcomePage(Map<String, Object> model) {
 		
 		System.out.println("welcome!");
+		System.out.println("testing");
 
 //		ModelAndView model = new ModelAndView();
 //		model.addObject("title", "Spring Security Hello World");
